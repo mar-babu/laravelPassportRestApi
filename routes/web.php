@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use \App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,7 @@ Route::get('/', function () {
 Route::group(["middleware" => "web"], function() {
     Route::get('/login', [AuthController::class ,'showLoginForm'])->name('login');
     Route::get('/registration', [AuthController::class ,'showRegistrationForm'])->name('registration');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 });
 
