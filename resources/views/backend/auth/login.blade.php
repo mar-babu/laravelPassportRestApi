@@ -9,7 +9,8 @@
     <div class="login-area login-s2">
         <div class="container">
             <div class="login-box ptb--100">
-                <form>
+                <form id="loginForm" method="POST">
+                    @csrf
                     <div class="login-form-head">
                         <h4>Sign In</h4>
                         <p>Hello there, Sign in and start managing your Product Management System</p>
@@ -19,8 +20,8 @@
                         @include('backend.layouts.partials.messages')
 
                         <div class="form-gp">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" id="exampleInputEmail1">
+                            <label for="email">Email address</label>
+                            <input type="email" class="@error('email') is-invalid @enderror" name="email" id="email">
                             <i class="ti-email"></i>
                             <div class="text-danger"></div>
                             @error('email')
@@ -30,8 +31,8 @@
                             @enderror
                         </div>
                         <div class="form-gp">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" id="exampleInputPassword1">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                             @error('password')
@@ -63,4 +64,50 @@
         </div>
     </div>
     <!-- login area end -->
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('#loginForm').submit(function (e) {
+                e.preventDefault();
+//                let name = $('#name').val();
+                let email = $('#email').val();
+//                let phone = $('#phone').val();
+                let password = $('#password').val();
+                let url = '{{ url('api/login') }}';
+
+/*                                $.ajaxSetup({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                                        "Accept": "application/json"
+                                    }
+                                });*/
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+//                    dataType: 'json',
+
+                    data: {
+//                        'name' : name,
+                        'email' : email,
+//                        'phone' : phone,
+                        'password' : password,
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data.error) {
+                            alert(data.error)
+                        }
+                        if (data.success) {
+                            console.log('Logged In!!');
+                            window.location.href = data.redirect_url;
+                        }
+
+                    }
+                })
+            })
+        })
+    </script>
 @endsection

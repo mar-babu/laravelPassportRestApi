@@ -13,15 +13,19 @@ class PassportAuthController extends Controller
      */
     public function register(Request $request)
     {
-        $this->validate($request, [
+//        dd($request->all());
+/*        $this->validate($request, [
             'name' => 'required|min:4',
             'email' => 'required|email',
+            'phone' => 'required|phone',
             'password' => 'required|min:8',
-        ]);
+            'confirm_password' => 'required|min:8',
+        ]);*/
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => bcrypt($request->password)
         ]);
 
@@ -42,7 +46,7 @@ class PassportAuthController extends Controller
 
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('LaravelPassportRestApiApp')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json(['token' => $token, 'redirect_url' => '/dashboard'], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

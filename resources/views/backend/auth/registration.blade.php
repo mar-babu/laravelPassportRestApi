@@ -122,12 +122,12 @@
                         'password' : password,
                         'confirm_password' : confirm_password,
                     },
-                    success: function (response) {
-                        if (response.error) {
-                            console.log(response.error);
+                    success: function (data) {
+                        if (data.error) {
+                            console.log(data.error);
                         }
-                        if (response.success) {
-                            console.log(response.success);
+                        if (data.success) {
+                            console.log(data.success);
                         }
 
                     }

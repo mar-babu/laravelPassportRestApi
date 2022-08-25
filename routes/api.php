@@ -16,8 +16,8 @@ use App\Http\Controllers\API\ProductController;
 |
 */
 
-Route::post('register', [PassportAuthController::class ,'register']);
-Route::post('login', [PassportAuthController::class ,'login']);
+Route::post('/register', [PassportAuthController::class ,'register']);
+Route::post('/login', [PassportAuthController::class ,'login']);
 Route::middleware('auth:api')->group( function () {
-    Route::resource('products', ProductController::class);
+    Route::resource('/products', ProductController::class);
 });
