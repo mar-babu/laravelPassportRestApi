@@ -25,10 +25,8 @@
                             Products
                         </span></a>
                         <ul class="collapse">
-                            <li class=""><a href="">All Products</a></li>
+                            <li class=""><a href="{{ url('product') }}">All Products</a></li>
                             <li class=""><a href="{{ url('product/create') }}">Create Product</a></li>
-                            <li class=""><a href="">Update Product</a></li>
-                            <li class=""><a href="">Delete Product</a></li>
                         </ul>
                     </li>
 

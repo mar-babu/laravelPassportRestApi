@@ -15,7 +15,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = auth()->user()->products;
+
+        return response()->json([
+            'success' => true,
+            'data' => $products
+        ]);
     }
 
     /**
@@ -49,7 +54,7 @@ class ProductController extends Controller
         $product->price = $request->price;
 //        $product->image = $request->image;
         $product->status = $request->status;
-dd($product);
+
         if (auth()->user()->products()->save($product))
             return response()->json([
                 'success' => true,
@@ -70,7 +75,19 @@ dd($product);
      */
     public function show($id)
     {
-        //
+        $product = auth()->user()->products()->find($id);
+
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found '
+            ], 400);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => $product->toArray()
+        ], 400);
     }
 
     /**
@@ -93,7 +110,26 @@ dd($product);
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = auth()->user()->products()->find($id);
+
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found'
+            ], 400);
+        }
+
+        $updated = $product->fill($request->all())->save();
+
+        if ($updated)
+            return response()->json([
+                'success' => true
+            ]);
+        else
+            return response()->json([
+                'success' => false,
+                'message' => 'Product can not be updated'
+            ], 500);
     }
 
     /**
@@ -104,6 +140,24 @@ dd($product);
      */
     public function destroy($id)
     {
-        //
+        $product = auth()->user()->products()->find($id);
+
+        if (!$product) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product not found'
+            ], 400);
+        }
+
+        if ($product->delete()) {
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Product can not be deleted'
+            ], 500);
+        }
     }
 }
