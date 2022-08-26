@@ -9,7 +9,7 @@ Laravel 9 REST API with Passport Authentication - Ajax
 - Run ```cp .env.example .env```
 - Run ```composer install```
 - Provide db name, username and password in .env
-- Run ```php artisan migrate```
+- Run ```php artisan migrate --seed```
 - Run ```php artisan passport:install```
 - Run ```php artisan serve```
 
