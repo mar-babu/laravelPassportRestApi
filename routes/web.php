@@ -30,6 +30,7 @@ Route::group(["middleware" => "web"], function() {
 Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
 //Route::middleware('client')->group(function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/product-filter', [ProductController::class, 'filter']);
     Route::resource('/product', ProductController::class);
 //});
 

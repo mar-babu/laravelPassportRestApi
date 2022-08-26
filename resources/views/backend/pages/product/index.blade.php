@@ -38,6 +38,44 @@ Admins - Admin Panel
     <div class="row">
         <!-- data table start -->
         <div class="col-12 mt-5">
+            <!-- filter start -->
+            <div class="card card-danger">
+                <div class="card-header">
+                    <h3 class="card-title">Filter</h3>
+                </div>
+                <div class="card-body">
+                    <form action="{{ url('/product-filter') }}" method="GET">
+                        <div class="row">
+                            <div class="col-2">
+                                <input class="form-control" placeholder="Min Price" name="min_price" type="number">
+                            </div>
+                            <div class="col-2">
+                                <input class="form-control" placeholder="Max Price" name="max_price" type="number">
+                            </div>
+                            <div class="col-2">
+                                <select class="form-control search_column" name="sort">
+                                    <option selected="selected" value="">Select Sort By</option>
+                                    <option value="ASC">Ascending</option>
+                                    <option value="DESC">Desceding</option>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <select class="form-control search_column" name="status">
+                                    <option selected="selected" value="">Select Status</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-md btn-success">Search</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- filter end -->
+
             <div class="card">
                 <div class="card-body">
                     <h4 class="header-title float-left">Products List</h4>
