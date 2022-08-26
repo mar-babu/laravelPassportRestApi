@@ -71,7 +71,7 @@
                                         <option value="">Select</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->id }}"
-                                                {{ $user->userPermission->role_id == $role->id ? 'selected' : '' }}
+                                                {{ $user?->userPermission?->role_id == $role?->id ? 'selected' : '' }}
                                             >
                                                 {{ $role->role_name }}</option>
                                         @endforeach
@@ -113,18 +113,6 @@
                 let password = $('#password').val();
                 let url = '{{ url('user/update') }}';
                 let redirect_url = '{{ url('/user/index') }}';
-                let token = $('meta[name="csrf-token"]').attr('content');
-                let bearer_token = getCookie('bearerAccessToken');
-
-                console.log(bearer_token);
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': token,
-                        'Accept': 'application/json',
-                        'Authorization': 'Bearer ' + bearer_token,
-                    }
-                });
 
                 $.ajax({
                     url: url,
@@ -132,6 +120,7 @@
                     dataType: 'json',
 
                     data: {
+                        '_token': '{{ csrf_token() }}',
                         'name' : name,
                         'phone' : phone,
                         'email' : email,
@@ -139,7 +128,7 @@
                         'password' : password,
                     },
                     success: function (data) {
-                        console.log('Product Successfully Updated!!');
+                        console.log('User Successfully Updated!!');
 //                        console.log(data);
                         window.location = redirect_url;
                     }, error: function (data) {

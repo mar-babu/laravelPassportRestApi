@@ -8,11 +8,11 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Create Role</h4>
+                    <h4 class="page-title pull-left">Create User</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ url('product') }}">All Products</a></li>
-                        <li><span>Create Role</span></li>
+                        <li><a href="{{ url('user/index') }}">All Users</a></li>
+                        <li><span>Create User</span></li>
                     </ul>
                 </div>
             </div>
@@ -31,7 +31,7 @@
             <div class="col-12 mt-5">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Create New Role</h4>
+                        <h4 class="header-title">Create New User</h4>
                         @include('backend.layouts.partials.messages')
                         <form action="{{ url('/user/store') }}" method="POST">
                                 @csrf

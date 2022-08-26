@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <h4 class="header-title float-left">User List</h4>
                         <p class="float-right mb-2">
-                            @if (!permission('u2'))
+                            @if (permission('u2'))
                                 <a class="btn btn-primary text-white" href="{{ url('/user/create') }}">Create New User</a>
                             @endif
                         </p>
@@ -77,11 +77,11 @@
                                             {{--@endif--}}
                                             <td>
                                                 <div class="btn-group">
-                                                    @if (!permission('u3'))
+                                                    @if (permission('u3'))
                                                         <a href="{{ route('user.edit', $user->id) }}"
                                                             class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                                     @endif
-                                                    @if (!permission('u4'))
+                                                    @if (permission('u4'))
                                                         <a href="{{ route('user.destroy', $user->id) }}" id="delete"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                     @endif

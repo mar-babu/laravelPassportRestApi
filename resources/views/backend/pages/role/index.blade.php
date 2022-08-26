@@ -63,10 +63,10 @@
                                         <td>{{ $role->role_name }}</td>
                                         <td>
                                             {{--@if ($role->role_name != 'Salesman')--}}
-                                            @if (!permission('ro2'))
+                                            @if (permission('ro2'))
                                             <a class="btn btn-success text-white" href="{{ route('role.edit', $role->id) }}">Edit</a>
                                             @endif
-                                            @if (!permission('ro3'))
+                                            @if (permission('ro3'))
                                             <a id="roleDelete" class="btn btn-danger text-white">
                                                 Delete
                                             </a>

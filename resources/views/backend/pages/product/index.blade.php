@@ -78,7 +78,7 @@
                 <div class="card-body">
                     <h4 class="header-title float-left">Products List</h4>
                     <p class="float-right mb-2">
-                        @if (!permission('p2'))
+                        @if (permission('p2'))
                         <a class="btn btn-primary text-white" href="{{ url('product/create') }}">Create New Product</a>
                         @endif
                     </p>
@@ -109,10 +109,10 @@
                                         </span>
                                     </td>
                                     <td>
-                                        @if (!permission('p3'))
+                                        @if (permission('p3'))
                                         <a class="btn btn-success text-white" href="{{ route('product.edit', $product->id) }}">Edit</a>
                                         @endif
-                                        @if (!permission('p4'))
+                                        @if (permission('p4'))
                                             <a id="productDelete" class="btn btn-danger text-white"> Delete </a>
                                         @endif
                                     </td>

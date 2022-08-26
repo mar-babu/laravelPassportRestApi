@@ -12,7 +12,7 @@
                 <div class="breadcrumbs-area clearfix">
                     <h4 class="page-title pull-left">Dashboard</h4>
                     <ul class="breadcrumbs pull-left">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('/home') }}">Home</a></li>
                         <li><span>Dashboard</span></li>
                     </ul>
                 </div>
@@ -55,6 +55,7 @@
                     <div class="col-md-6 mb-3 mb-lg-0">
                         <div class="card">
                             <div class="seo-fact sbg3">
+                                <a href="{{ url('/user/role') }}">
                                 <div class="p-4 d-flex justify-content-between align-items-center">
                                     <div class="seofct-icon">Permissions</div>
                                     <h2>{{ $total_permissions }}</h2>
@@ -65,10 +66,12 @@
                     <div class="col-md-6 mb-3 mb-lg-0">
                         <div class="card">
                             <div class="seo-fact sbg4">
-                                <div class="p-4 d-flex justify-content-between align-items-center">
-                                    <div class="seofct-icon">Products</div>
-                                    <h2>{{ $total_products }}</h2>
-                                </div>
+                                <a href="{{ url('/product') }}">
+                                    <div class="p-4 d-flex justify-content-between align-items-center">
+                                        <div class="seofct-icon">Products</div>
+                                        <h2>{{ $total_products }}</h2>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
