@@ -61,7 +61,7 @@
 
                                     <label class="custom-checkbox">
                                     <div class="checkbox checkbox-pink">
-                                        <input onchange="selectAll()" id="select-all" type="checkbox" class="checkbox-input" class="checkbox-input"value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
+                                        <input onchange="selectAll()" id="select-all" type="checkbox" class="checkbox-input" value="1" data-parsley-multiple="groups" data-parsley-mincheck="2" data-parsley-id="69">
                                         <label for="select-all"> Select All Permission </label>
                                     </div>
                                 </label>

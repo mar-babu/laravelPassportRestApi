@@ -16,11 +16,11 @@
         <div class="row align-items-center">
             <div class="col-sm-6">
                 <div class="breadcrumbs-area clearfix">
-                    <h4 class="page-title pull-left">Create Product</h4>
+                    <h4 class="page-title pull-left">Create Role</h4>
                     <ul class="breadcrumbs pull-left">
                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li><a href="{{ url('product') }}">All Products</a></li>
-                        <li><span>Create Product</span></li>
+                        <li><a href="{{ url('user/role') }}">All Role</a></li>
+                        <li><span>Create Role</span></li>
                     </ul>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                         <div class="data-tables">
                             @include('backend.layouts.partials.messages')
                             <table id="dataTable" class="text-center product-table">
-                                <thead class="bg-light text-capitalize">
+                                <thead class="dark text-capitalize">
                                 <tr>
                                     <th width="1%">Sl</th>
                                     <th width="2%">Name</th>
@@ -63,14 +63,14 @@
                                         <td>{{ $role->role_name }}</td>
                                         <td>
                                             {{--@if ($role->role_name != 'Salesman')--}}
-                                            {{--@if (permission('ro2'))--}}
+                                            @if (!permission('ro2'))
                                             <a class="btn btn-success text-white" href="{{ route('role.edit', $role->id) }}">Edit</a>
-                                            {{--@endif--}}
-                                            {{--                                            @if (permission('ro3'))--}}
+                                            @endif
+                                            @if (!permission('ro3'))
                                             <a id="roleDelete" class="btn btn-danger text-white">
                                                 Delete
                                             </a>
-                                            {{--@endif--}}
+                                            @endif
                                             {{--@endif--}}
                                         </td>
                                     </tr>

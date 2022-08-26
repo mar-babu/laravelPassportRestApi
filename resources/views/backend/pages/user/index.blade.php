@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <h4 class="header-title float-left">User List</h4>
                         <p class="float-right mb-2">
-                            @if (permission('ro2'))
+                            @if (!permission('u2'))
                                 <a class="btn btn-primary text-white" href="{{ url('/user/create') }}">Create New User</a>
                             @endif
                         </p>
@@ -42,7 +42,7 @@
                             @include('backend.layouts.partials.messages')
 
                             <table id="dataTable" class="table table-bordered table-hover mt-4" cellspacing="0" width="100%">
-                                <thead class="theme-primary text-white">
+                                <thead class="theme-primary text-dark">
                                     <tr>
                                         <th>Sl</th>
                                         <th>Name</th>
@@ -64,7 +64,7 @@
                                             <td>{{ $user->email }}</td>
                                             <td>{{ $user->phone }}</td>
                                             <td>{{ $user?->userPermission?->role?->role_name }}</td>
-                                            @if (permission('u4'))
+                                            {{--@if (permission('u4'))--}}
                                                 <td>
                                                     @if ($user->status)
                                                         <a href="{{ route('user.status', $user->id) }}"><span
@@ -74,14 +74,14 @@
                                                                 class="badge badge-danger">Inactive</span></a>
                                                     @endif
                                                 </td>
-                                            @endif
+                                            {{--@endif--}}
                                             <td>
                                                 <div class="btn-group">
-                                                    @if (permission('u3'))
+                                                    @if (!permission('u3'))
                                                         <a href="{{ route('user.edit', $user->id) }}"
                                                             class="btn btn-success btn-sm"><i class="fa fa-edit"></i></a>
                                                     @endif
-                                                    @if (permission('u4'))
+                                                    @if (!permission('u4'))
                                                         <a href="{{ route('user.destroy', $user->id) }}" id="delete"
                                                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
                                                     @endif

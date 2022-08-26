@@ -99,7 +99,7 @@
                     success: function (data) {
                             console.log('Logged In!!');
 //                            console.log(data);
-                            setCookie('bearerAccessToken', data.token)
+                            setCookie('bearerAccessToken', data.token);
                             window.location = redirect_url;
                     }, error: function (data) {
                         console.log(data.message);

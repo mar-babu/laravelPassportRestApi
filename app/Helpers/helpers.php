@@ -14,13 +14,9 @@ if (!function_exists('permission')) {
 
     function permission($data)
     {
-        $userPermission = cacheUserPermission(auth()->user()->id);
+        $userPermission = cacheUserPermission(\Illuminate\Support\Facades\Auth::id());
 
-        if (isset($userPermission->role->permission)) {
-            $permission = $userPermission->role->permission;
-        }
-
-        if (in_array($data, json_decode($permission->permissions))) {
+        if (isset($userPermission->role->permission) && in_array($data, json_decode($userPermission->role->permission->permissions))) {
             return true;
         }
     }

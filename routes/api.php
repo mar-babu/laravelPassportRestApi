@@ -20,4 +20,5 @@ Route::post('/register', [PassportAuthController::class ,'register']);
 Route::post('/login', [PassportAuthController::class ,'login']);
 Route::middleware('auth:api')->group( function () {
     Route::resource('/products', ProductController::class);
+    Route::get('/logout', [PassportAuthController::class, 'logout']);
 });

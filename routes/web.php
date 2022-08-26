@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use \App\Http\Controllers\Auth\LoginController;
 use \App\Http\Controllers\DashboardController;
 use \App\Http\Controllers\Productcontroller;
 use \Illuminate\Support\Facades\Auth;
@@ -19,20 +19,18 @@ use \App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('login');
-});
-
-
-Route::group(["middleware" => "web"], function() {
-    Route::get('/login', [AuthController::class ,'showLoginForm'])->name('login');
-    Route::get('/registration', [AuthController::class ,'showRegistrationForm'])->name('registration');
+Route::group(['middleware' => ['guest', 'web']], function() {
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });
+    Route::get('/login', [LoginController::class ,'showLoginForm'])->name('login');
+    Route::get('/registration', [LoginController::class ,'showRegistrationForm'])->name('registration');
 
 });
 
-Route::middleware(['middleware' => 'auth:web'])->group(function () {
+Route::middleware(['middleware' => 'api'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::get('/product-filter', [ProductController::class, 'filter']);
     Route::resource('/product', ProductController::class);
@@ -52,5 +50,6 @@ Route::middleware(['middleware' => 'auth:web'])->group(function () {
     Route::put('/user/update', [UserController::class, 'update'])->name('user.update');
     Route::get('/user/{id}/destroy', [UserController::class, 'destroy'])->name('user.destroy');
     Route::get('/user/{id}/status', [UserController::class, 'status'])->name('user.status');
+
 });
 

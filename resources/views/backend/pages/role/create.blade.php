@@ -250,6 +250,8 @@
                                                         <a class="text-dark">
                                                             Role Create
                                                         </a>
+                                                        <input type="checkbox" class="checkbox-input" id="role" value="role" name="permissions[]"
+                                                               style="display: none;">
                                                     </h5>
                                                 </div>
                                                 <div id="Role" class="collapse show" role="tabpanel"
