@@ -76,7 +76,7 @@
 //                let phone = $('#phone').val();
                 let password = $('#password').val();
                 let url = '{{ url('api/login') }}';
-                let redirect_url = '{{ url('/dashboard') }}';
+                let redirect_url = '{{ url('/home') }}';
 
                 $.ajaxSetup({
                     headers: {
@@ -97,16 +97,11 @@
                         'password' : password,
                     },
                     success: function (data) {
-                        console.log(data);
-                        if (data.error) {
-                            alert(data.error)
-                        }
-                        if (data.success) {
-                            console.log(data);
                             console.log('Logged In!!');
+                            console.log(data.message);
                             window.location = redirect_url;
-                        }
-
+                    }, error: function (data) {
+                        console.log(data.message);
                     }
                 })
             })

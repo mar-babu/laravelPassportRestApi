@@ -48,7 +48,7 @@ class PassportAuthController extends Controller
         if (Auth::attempt($data)) {
             $token = auth()->user()->createToken('LaravelPassportRestApiApp')->accessToken;
 //            return redirect('/dashboard');
-            return response()->json(['token' => $token, 'message' => 'Successfully Logged in !', 'redirect_url' => '/dashboard'], 200);
+            return response()->json(['token' => $token, 'message' => 'Successfully Logged in !', 'redirect_url' => '/home'], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }
