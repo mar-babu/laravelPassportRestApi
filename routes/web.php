@@ -27,9 +27,9 @@ Route::group(["middleware" => "web"], function() {
 
 });
 
-Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
-//Route::middleware('client')->group(function () {
+Route::group(['middleware' => ['web', 'auth']], function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
     Route::resource('/product', ProductController::class);
-//});
+});
 

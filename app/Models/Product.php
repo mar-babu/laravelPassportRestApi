@@ -12,4 +12,10 @@ class Product extends Model
     protected $fillable = [
         'name', 'description', 'price', 'status'
     ];
+
+    // scope added for multiple filters
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Filters\ProductFilters;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,11 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return view('backend.pages.product.edit', compact('product'));
+    }
 
+    public function productFilter(ProductFilters $filters)
+    {
+//        ['price' => '100,150', 'sort' => 'ASC', 'status' => '1', ];
+        return Product::filter($filters)->get();
     }
 }
