@@ -3,12 +3,12 @@
     <h4 class="user-name dropdown-toggle" data-toggle="dropdown">
     <i class="fa fa-angle-down"></i></h4>
     <div class="dropdown-menu">
-        <a class="dropdown-item" href=""
+        <a class="dropdown-item" href="{{ url('/signout') }}"
         onclick="event.preventDefault();
-                      document.getElementById('admin-logout-form').submit();">Log Out</a>
+                      document.getElementById('logout-form').submit();">Log Out</a>
     </div>
 
-    <form id="admin-logout-form" action="" method="POST" style="display: none;">
+    <form id="logout-form" action="{{ url('/signout') }}" method="get" style="display: none;">
         @csrf
     </form>
 </div>

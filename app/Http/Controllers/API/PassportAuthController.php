@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PassportAuthController extends Controller
 {
@@ -44,9 +45,10 @@ class PassportAuthController extends Controller
             'password' => $request->password
         ];
 
-        if (auth()->attempt($data)) {
+        if (Auth::attempt($data)) {
             $token = auth()->user()->createToken('LaravelPassportRestApiApp')->accessToken;
-            return response()->json(['token' => $token, 'redirect_url' => '/dashboard'], 200);
+//            return redirect('/dashboard');
+            return response()->json(['token' => $token, 'message' => 'Successfully Logged in !', 'redirect_url' => '/dashboard'], 200);
         } else {
             return response()->json(['error' => 'Unauthorised'], 401);
         }

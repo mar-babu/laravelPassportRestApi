@@ -6,6 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title', 'Laravel PMS')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf_token" content="{{ csrf_token() }}" />
+
     @include('backend.layouts.partials.styles')
     @yield('styles')
 </head>
@@ -27,7 +29,7 @@
         <!-- main content area start -->
         <div class="main-content">
             @include('backend.layouts.partials.header')
-            @yield('admin-content')
+            @yield('content')
         </div>
         <!-- main content area end -->
         @include('backend.layouts.partials.footer')

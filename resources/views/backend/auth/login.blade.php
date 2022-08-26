@@ -42,7 +42,7 @@
                             @enderror
                         </div>
                         <div class="row mb-4 rmber-area">
-                            <div class="col-6">
+{{--                            <div class="col-6">
                                 <div class="custom-control custom-checkbox mr-sm-2">
                                     <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
                                     <label class="custom-control-label" for="customControlAutosizing">Remember Me</label>
@@ -50,7 +50,7 @@
                             </div>
                             <div class="col-6 text-right">
                                 <a href="#">Forgot Password?</a>
-                            </div>
+                            </div>--}}
                         </div>
                         <div class="submit-btn-area">
                             <button id="form_submit" type="submit">Submit <i class="ti-arrow-right"></i></button>
@@ -76,18 +76,19 @@
 //                let phone = $('#phone').val();
                 let password = $('#password').val();
                 let url = '{{ url('api/login') }}';
+                let redirect_url = '{{ url('/dashboard') }}';
 
-/*                                $.ajaxSetup({
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                                        "Accept": "application/json"
-                                    }
-                                });*/
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+                        "Accept": "application/json",
+                    }
+                });
 
                 $.ajax({
                     url: url,
                     type: 'POST',
-//                    dataType: 'json',
+                    dataType: 'json',
 
                     data: {
 //                        'name' : name,
@@ -101,8 +102,9 @@
                             alert(data.error)
                         }
                         if (data.success) {
+                            console.log(data);
                             console.log('Logged In!!');
-                            window.location.href = data.redirect_url;
+                            window.location = redirect_url;
                         }
 
                     }
