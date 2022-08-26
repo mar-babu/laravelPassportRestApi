@@ -94,7 +94,7 @@
                             setCookie('bearerAccessToken', data.token);
                             window.location = redirect_url;
                     }, error: function (response) {
-                        console.log(response.responseJSON.message);
+                        console.log(response.errors);
                     }
                 })
             })

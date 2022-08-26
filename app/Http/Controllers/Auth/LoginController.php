@@ -38,11 +38,9 @@ class LoginController extends Controller
         if (Auth::attempt($data)) {
             $user = User::where('email', request('email'))->first();
             Auth::login($user, true);
-            Session::flash('alert-success', 'Data Stored Successfully!!');
 
-            return response()->json(['message' => 'Successfully Logged in !', 'redirect_url' => '/home'], 200);
+            return response()->json(['message' => 'Successfully Logged in !'], 200);
         } else {
-            Session::flash('alert-danger', 'Data Store failed!!');
             return redirect()->back();
         }
     }
