@@ -23,11 +23,7 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                if($guard === 'api'){
-//                    return redirect()->route('dashboard');
                 return redirect(RouteServiceProvider::HOME);
-                }
-                return redirect()->route('login');
             }
         }
 

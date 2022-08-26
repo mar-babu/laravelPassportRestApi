@@ -21,7 +21,7 @@
 
                         <div class="form-gp">
                             <label for="email">Email address</label>
-                            <input type="email" class="@error('email') is-invalid @enderror" name="email" id="email">
+                            <input type="email" class="@error('email') is-invalid @enderror" name="email" id="email" required>
                             <i class="ti-email"></i>
                             <div class="text-danger"></div>
                             @error('email')
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-gp">
                             <label for="password">Password</label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" required>
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                             @error('password')
@@ -75,34 +75,26 @@
                 let email = $('#email').val();
 //                let phone = $('#phone').val();
                 let password = $('#password').val();
-                let url = '{{ url('api/login') }}';
+                let url = '{{ url('/login-process') }}';
                 let redirect_url = '{{ url('/home') }}';
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-                        "Accept": "application/json",
-                    }
-                });
 
                 $.ajax({
                     url: url,
                     type: 'POST',
-                    dataType: 'json',
 
                     data: {
 //                        'name' : name,
                         'email' : email,
 //                        'phone' : phone,
                         'password' : password,
+                        '_token': '{{ csrf_token() }}',
                     },
-                    success: function (data) {
-                            console.log('Logged In!!');
-//                            console.log(data);
+                    success: function (data, response) {
+                            console.log(response);
                             setCookie('bearerAccessToken', data.token);
                             window.location = redirect_url;
-                    }, error: function (data) {
-                        console.log(data.message);
+                    }, error: function (response) {
+                        console.log(response.responseJSON.message);
                     }
                 })
             })

@@ -25,10 +25,11 @@ Route::group(['middleware' => ['guest', 'web']], function() {
     });
     Route::get('/login', [LoginController::class ,'showLoginForm'])->name('login');
     Route::get('/registration', [LoginController::class ,'showRegistrationForm'])->name('registration');
+    Route::post('/login-process', [LoginController::class, 'loginProcess'])->name('login.process');
 
 });
 
-Route::middleware(['middleware' => 'api'])->group(function () {
+Route::middleware(['middleware' => 'auth:web'])->group(function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
