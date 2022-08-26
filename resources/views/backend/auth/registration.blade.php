@@ -102,6 +102,7 @@
                 let password = $('#password').val();
                 let confirm_password = $('#confirm_password').val();
                 let url = '{{ url('api/register') }}';
+                let redirect_url = '{{ url('/login') }}';
 
 /*                $.ajaxSetup({
                     headers: {
@@ -123,13 +124,11 @@
                         'confirm_password' : confirm_password,
                     },
                     success: function (data) {
-                        if (data.error) {
-                            console.log(data.error);
-                        }
-                        if (data.success) {
-                            console.log(data.success);
-                        }
-
+                        console.log('Registration Successfull');
+                        console.log(data.message);
+                        window.location = redirect_url;
+                    }, error: function (data) {
+                        console.log(data.message);
                     }
                 })
             })

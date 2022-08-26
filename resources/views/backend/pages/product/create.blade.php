@@ -1,8 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title')
-    Product Create - Admin Panel
-@endsection
+@section('title', 'Product Create - Admin Panel')
 
 @section('styles')
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
@@ -16,7 +14,6 @@
 
 
 @section('content')
-
     <!-- page title area start -->
     <div class="page-title-area">
         <div class="row align-items-center">
@@ -138,7 +135,7 @@
                         console.log(data.message);
                     }
 
-            })
+                })
             })
         })
     </script>

@@ -35,20 +35,20 @@
                             Roles & Permissions
                         </span></a>
                         <ul class="collapse">
-                                <li class=""><a href="">All Roles</a></li>
-                                <li class=""><a href="">Create Role</a></li>
+                                <li class=""><a href="{{ url('/user/role') }}">All Roles</a></li>
+                                <li class=""><a href="{{ url('/user/role/create') }}">Create Role</a></li>
                         </ul>
                     </li>
 
                     <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-user"></i><span>
-                            Admins
+                            Users
                         </span></a>
                         <ul class="collapse">
                             
-                                <li class=""><a href="">All Admins</a></li>
+                                <li class=""><a href="{{ url('/user/index') }}">All Users</a></li>
 
-                                <li class=""><a href="">Create Admin</a></li>
+                                {{--<li class=""><a href="{{ url('/user/create') }}">Create User</a></li>--}}
                         </ul>
                     </li>
 

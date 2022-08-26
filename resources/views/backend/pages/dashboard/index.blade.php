@@ -1,10 +1,7 @@
 
 @extends('backend.layouts.master')
 
-@section('title')
-    Dashboard Page - Admin Panel
-@endsection
-
+@section('title', 'Dashboard Page - Admin Panel')
 
 @section('content')
 

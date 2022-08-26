@@ -32,7 +32,7 @@ class PassportAuthController extends Controller
 
         $token = $user->createToken('LaravelPassportRestApiApp')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json(['token' => $token, 'message' => 'Successfully Registered !',], 200);
     }
 
     /**

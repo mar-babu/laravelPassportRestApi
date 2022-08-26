@@ -1,8 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title')
-Admins - Admin Panel
-@endsection
+@section('title', 'Admins - Admin Panel')
 
 @section('styles')
     <!-- Start datatable css -->
@@ -111,13 +109,9 @@ Admins - Admin Panel
                                     <td>
                                         <a class="btn btn-success text-white" href="{{ route('product.edit', $product->id) }}">Edit</a>
 
-                                        <a id="productDelete" class="btn btn-danger text-white" href="{{ route('product.destroy', $product->id) }}">
+                                        <a id="productDelete" class="btn btn-danger text-white">
                                             Delete
                                         </a>
-                                        <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: none;">
-                                            @method('DELETE')
-                                            @csrf
-                                        </form>
                                     </td>
                                 </tr>
                                @endforeach
