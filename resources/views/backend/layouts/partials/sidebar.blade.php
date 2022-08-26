@@ -21,6 +21,18 @@
                     </li>
 
                     <li>
+                        <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-cart-plus"></i><span>
+                            Products
+                        </span></a>
+                        <ul class="collapse">
+                            <li class=""><a href="">All Products</a></li>
+                            <li class=""><a href="{{ url('product/create') }}">Create Product</a></li>
+                            <li class=""><a href="">Update Product</a></li>
+                            <li class=""><a href="">Delete Product</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
                         <a href="javascript:void(0)" aria-expanded="true"><i class="fa fa-tasks"></i><span>
                             Roles & Permissions
                         </span></a>

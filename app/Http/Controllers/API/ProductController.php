@@ -25,7 +25,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.product.create');
     }
 
     /**
@@ -36,12 +36,12 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'status' => 'required'
-        ]);
+//        $this->validate($request, [
+//            'name' => 'required',
+//            'description' => 'required',
+//            'price' => 'required',
+//            'status' => 'required'
+//        ]);
 
         $product = new Product();
         $product->name = $request->name;
@@ -49,7 +49,7 @@ class ProductController extends Controller
         $product->price = $request->price;
 //        $product->image = $request->image;
         $product->status = $request->status;
-
+dd($product);
         if (auth()->user()->products()->save($product))
             return response()->json([
                 'success' => true,

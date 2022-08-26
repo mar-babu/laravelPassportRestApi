@@ -28,8 +28,8 @@ Route::group(["middleware" => "web"], function() {
 });
 
 Route::get('/signout', [AuthController::class, 'signout'])->name('signout');
-Route::middleware('api')->group(function () {
-    Route::get('/home', [DashboardController::class, 'index']);
-    
-});
+//Route::middleware('client')->group(function () {
+    Route::get('/home', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/product/create', [ProductController::class, 'create']);
+//});
 
