@@ -32,13 +32,13 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-/*        $request->validate([
+        $request->validate([
             'name' => 'required|unique:users,name|unique:users,email',
             'email' => 'required|unique:users',
             'phone' => "required|unique:users",
             'role_id' => 'required',
             'password' => 'required|confirmed'
-        ]);*/
+        ]);
 
         $user = new User();
         $user->name = $request->name;

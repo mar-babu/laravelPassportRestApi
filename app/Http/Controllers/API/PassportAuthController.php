@@ -15,19 +15,19 @@ class PassportAuthController extends Controller
     public function register(Request $request)
     {
 //        dd($request->all());
-/*        $this->validate($request, [
+        $this->validate($request, [
             'name' => 'required|min:4',
-            'email' => 'required|email',
-            'phone' => 'required|phone',
+            'email' => 'required|unique:users',
+            'phone' => 'required|unique:users',
             'password' => 'required|min:8',
             'confirm_password' => 'required|min:8',
-        ]);*/
+        ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
         ]);
 
         $token = $user->createToken('LaravelPassportRestApiApp')->accessToken;

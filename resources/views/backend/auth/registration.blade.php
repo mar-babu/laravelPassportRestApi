@@ -21,13 +21,13 @@
 
                         <div class="form-gp">
                             <label for="exampleInputName1">Full Name</label>
-                            <input type="text" name="name" id="name">
+                            <input type="text" name="name" id="name" required>
                             <i class="ti-user"></i>
                             <div class="text-danger"></div>
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" name="email" id="email">
+                            <input type="email" name="email" id="email" required>
                             <i class="ti-email"></i>
                             <div class="text-danger"></div>
                             @error('email')
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPhone1">Phone</label>
-                            <input type="number" name="phone" id="phone">
+                            <input type="number" name="phone" id="phone" required>
                             <i class="ti-mobile"></i>
                             <div class="text-danger"></div>
                             @error('phone')
@@ -49,7 +49,7 @@
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword1">Password</label>
-                            <input type="password" name="password" id="password">
+                            <input type="password" name="password" id="password" required>
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                             @error('password')
@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-gp">
                             <label for="exampleInputPassword2">Confirm Password</label>
-                            <input type="password" name="confirm_password" id="confirm_password">
+                            <input type="password" name="confirm_password" id="confirm_password" required>
                             <i class="ti-lock"></i>
                             <div class="text-danger"></div>
                             @error('confirm_password')
@@ -123,12 +123,17 @@
                         'password' : password,
                         'confirm_password' : confirm_password,
                     },
-                    success: function (data) {
-                        console.log('Registration Successfull');
-                        console.log(data.message);
+                    success: function (response) {
+                        console.log('Registration Successfull :)');
+                        console.log(response);
                         window.location = redirect_url;
-                    }, error: function (data) {
-                        console.log(data.message);
+                    }, error: function (response) {
+                        console.log(response);
+                        $.each(response.responseJSON.errors, function (key, value) {
+//                            $('.text-danger').show();
+                            $('.alert-danger').append('<p>' + value + '</p>').show();
+                            
+                        })
                     }
                 })
             })
